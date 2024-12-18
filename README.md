@@ -71,34 +71,29 @@ curl -X GET "http://localhost:8090/api/clientes?tipoDocumento=C&numeroDocumento=
 **HTTP 400**: Datos de entrada inválidos
 ```json
 {
-  "error": "Tipo de documento inválido. Solo se permiten 'C' o 'P'."
+    "message": "El tipo de documento debe ser 'C' (Cédula) o 'P' (Pasaporte).",
+    "status_code": 400,
+    "uri": "/api/clientes"
 }
 ```
 
 **HTTP 404**: Cliente no encontrado
 ```json
 {
-  "error": "Cliente no encontrado para el documento especificado."
+    "message": "Cliente no encontrado.",
+    "status_code": 404,
+    "uri": "/api/clientes"
 }
 ```
 
 **HTTP 500**: Error interno del servidor
 ```json
 {
-  "error": "Ocurrió un error inesperado. Por favor, inténtelo más tarde."
+    "message": "Error interno del servidor. - Required request parameter 'numeroDocumento' for method parameter type String is not present",
+    "status_code": 500,
+    "uri": "/api/clientes"
 }
 ```
-
-## Pruebas
-Se han implementado pruebas unitarias utilizando **JUnit 5** y **Mockito**. Para ejecutar las pruebas:
-```bash
-mvn test
-```
-
-### Cobertura de pruebas
-- **ClienteService**: Verifica la lógica principal para la obtención de clientes.
-- **Control de excepciones**: Garantiza que se manejen correctamente los errores comunes.
-
 ## Configuración de Mensajes
 Los mensajes del sistema están centralizados en el archivo `messages.properties`, ubicado en el directorio `src/main/resources`.
 
